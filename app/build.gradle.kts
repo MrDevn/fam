@@ -19,22 +19,22 @@ android {
 
     // Подпись релиза подключается только если заданы переменные окружения.
     // Секреты в репозиторий не попадают: без них release собирается неподписанным.
-    val keystorePath = providers.environmentVariable("FAM_KEYSTORE_PATH").orNull
-    val keystorePassword = providers.environmentVariable("FAM_KEYSTORE_PASSWORD").orNull
-    val keyAlias = providers.environmentVariable("FAM_KEY_ALIAS").orNull
-    val keyPassword = providers.environmentVariable("FAM_KEY_PASSWORD").orNull
-    val canSignRelease = keystorePath != null &&
-        keystorePassword != null &&
-        keyAlias != null &&
-        keyPassword != null
+    val signingStorePath = providers.environmentVariable("FAM_KEYSTORE_PATH").orNull
+    val signingStorePassword = providers.environmentVariable("FAM_KEYSTORE_PASSWORD").orNull
+    val signingKeyAlias = providers.environmentVariable("FAM_KEY_ALIAS").orNull
+    val signingKeyPassword = providers.environmentVariable("FAM_KEY_PASSWORD").orNull
+    val canSignRelease = signingStorePath != null &&
+        signingStorePassword != null &&
+        signingKeyAlias != null &&
+        signingKeyPassword != null
 
     signingConfigs {
         if (canSignRelease) {
             create("release") {
-                storeFile = file(keystorePath!!)
-                storePassword = keystorePassword
-                keyAlias = keyAlias
-                keyPassword = keyPassword
+                storeFile = file(signingStorePath!!)
+                storePassword = signingStorePassword
+                keyAlias = signingKeyAlias
+                keyPassword = signingKeyPassword
             }
         }
     }
