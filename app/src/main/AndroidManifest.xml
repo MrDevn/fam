@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      Единственное runtime-разрешение приложения.
+      Нужны только уведомления: без них невозможно показать пользователю
+      результат теста и сообщение о блокировке со стороны родительского контроля.
+
+      Приложение сознательно НЕ запрашивает и НЕ использует:
+        * SYSTEM_ALERT_WINDOW (overlay)
+        * MANAGE_EXTERNAL_STORAGE / READ_*_MEDIA
+        * BIND_ACCESSIBILITY_SERVICE
+        * BIND_DEVICE_ADMIN / Device Owner / Profile Owner
+        * BIND_VPN_SERVICE
+        * PACKAGE_USAGE_STATS, QUERY_ALL_PACKAGES
+      и не объявляет <queries>, чтобы не читать список установленных приложений.
+    -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:name=".FamApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:enableOnBackInvokedCallback="true"
+        android:theme="@style/Theme.FamilyAware">
+
+        <!--
+          Activity остаётся видимой в лаунчере (category.LAUNCHER) и никогда
+          программно не отключается: приложение не скрывает себя от пользователя
+          и от средств родительского контроля.
+          Ориентация и размер экрана не фиксируются (нет android:screenOrientation /
+          android:resizeableActivity="false") — это требование Android 16 для больших экранов.
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|uiMode|density|fontScale|locale|layoutDirection"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.FamilyAware">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

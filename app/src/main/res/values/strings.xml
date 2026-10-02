@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FamilyAware</string>
+    <string name="app_tagline">Честная работа рядом с родительским контролем</string>
+
+    <!-- ============================ Онбординг ============================ -->
+    <string name="onboarding_page_indicator">Страница %1$d из %2$d</string>
+    <string name="onboarding_next">Далее</string>
+    <string name="onboarding_back">Назад</string>
+    <string name="onboarding_finish">Понятно, начать</string>
+
+    <string name="onboarding_intro_title">Что это за приложение</string>
+    <string name="onboarding_intro_body">FamilyAware — учебное приложение, которое показывает, как корректно вести себя на устройстве с родительским контролем (например, Google Family Link).</string>
+    <string name="onboarding_intro_body_2">Оно использует только официальные API Android: не скрывает себя, не отключает чужие настройки, не обходит ограничения и не просит привилегированных механизмов.</string>
+
+    <string name="onboarding_permissions_title">Разрешения: что и зачем</string>
+    <string name="onboarding_permissions_body">Приложению нужно ровно одно runtime-разрешение. Ниже объяснено, зачем оно и что будет, если отказать.</string>
+    <string name="onboarding_permissions_note">Отказ не ломает приложение: все экраны и диагностика продолжают работать, отключается только отправка уведомлений.</string>
+
+    <string name="onboarding_supervision_title">Если устройством управляет родитель</string>
+    <string name="onboarding_supervision_body">FamilyAware проверяет устройство официальными способами и честно показывает, если функция недоступна из-за родительского контроля.</string>
+    <string name="onboarding_supervision_body_2">В этом случае приложение не будет повторно просить разрешение. Вместо этого оно покажет сообщение и пошаговую инструкцию, как родитель может официально разрешить функцию.</string>
+
+    <!-- ============================ Разрешение ============================ -->
+    <string name="perm_notifications_title">Уведомления</string>
+    <string name="perm_notifications_technical_name">android.permission.POST_NOTIFICATIONS</string>
+    <string name="perm_notifications_why">Нужно, чтобы показать результат проверки и предупредить, если функция заблокирована родительским контролем.</string>
+    <string name="perm_notifications_if_denied">Если отказать: приложение продолжит работать, но не сможет показывать уведомления. Все остальные экраны доступны.</string>
+    <string name="perm_notifications_legacy_note">На Android 12 и ниже это разрешение выдаётся при установке и отдельно не запрашивается — включается и выключается в настройках приложения.</string>
+    <string name="onboarding_legacy_toggle_show">Как это работает на Android 12 и ниже</string>
+    <string name="onboarding_legacy_toggle_hide">Скрыть подробности</string>
+
+    <!-- ============================ Состояния ============================ -->
+    <string name="state_loading">Проверяем устройство…</string>
+    <string name="state_loading_short">Загрузка…</string>
+    <string name="state_error_title">Не удалось выполнить проверку</string>
+    <string name="state_error_hint">Проверьте, что приложение не ограничено родительским контролем, и повторите попытку.</string>
+    <string name="state_permission_denied_title">Доступ запрещён</string>
+    <string name="state_retry">Повторить</string>
+    <string name="state_empty">Нет данных</string>
+
+    <!-- ============================ Главный экран ============================ -->
+    <string name="home_section_status">Состояние устройства</string>
+    <string name="home_section_permissions">Разрешения</string>
+    <string name="home_section_actions">Проверка функций</string>
+    <string name="home_section_transparency">Что приложение НЕ делает</string>
+
+    <string name="home_check_result_title">Проверка выполнена</string>
+    <string name="home_check_result_body">Приложение определило состояние устройства, ограничения и выданные разрешения.</string>
+    <string name="home_last_checked">Проверено: %1$s</string>
+    <string name="home_rerun">Проверить заново</string>
+
+    <string name="home_action_notifications_title">Тестовое уведомление</string>
+    <string name="home_action_notifications_body">Проверяет, действительно ли система позволяет приложению показывать уведомления.</string>
+    <string name="home_action_send">Отправить уведомление</string>
+
+    <string name="notification_channel_name">Состояние приложения</string>
+    <string name="notification_channel_description">Сообщения о результатах проверок и о блокировках со стороны родительского контроля.</string>
+    <string name="notification_test_title">FamilyAware работает</string>
+    <string name="notification_test_body">Уведомления разрешены. Проверка пройдена успешно.</string>
+    <string name="notification_blocked_title">Уведомления отключены</string>
+    <string name="notification_blocked_body">Система не разрешила показать уведомление. Возможно, действует родительский контроль.</string>
+
+    <!-- ============================ Диагностика ограничений ============================ -->
+    <string name="supervision_clean_title">Ограничений не обнаружено</string>
+    <string name="supervision_clean_body">Устройство не находится под управлением профиля с ограничениями, функция доступна полностью.</string>
+
+    <string name="supervision_detected_title">Обнаружено управление устройством</string>
+    <string name="supervision_detected_body">Часть функций может быть недоступна. Приложение не пытается это обойти — ниже показано, что именно ограничено и как родитель может это изменить.</string>
+
+    <string name="supervision_signal_managed_profile">Рабочий профиль (managed profile)</string>
+    <string name="supervision_signal_managed_profile_hint">Текущий пользователь — управляемый рабочий профиль.</string>
+
+    <string name="supervision_signal_private_profile">Частный профиль (private space)</string>
+    <string name="supervision_signal_private_profile_hint">Приложение запущено внутри частного профиля Android.</string>
+
+    <string name="supervision_signal_secondary_user">Отдельный пользователь устройства</string>
+    <string name="supervision_signal_secondary_user_hint">Приложение работает не в основном пользователе системы.</string>
+
+    <string name="supervision_signal_demo_user">Демо-режим устройства</string>
+    <string name="supervision_signal_demo_user_hint">Пользователь работает в демонстрационном режиме (витринный образец).</string>
+
+    <string name="supervision_signal_restrictions_provider">Активен провайдер ограничений</string>
+    <string name="supervision_signal_restrictions_provider_hint">В системе зарегистрирован сервис управления приложениями — например, Google Family Link или MDM-решение.</string>
+
+    <string name="supervision_signal_app_restrictions">Заданы ограничения для этого приложения</string>
+    <string name="supervision_signal_app_restrictions_hint">Администратор передал приложению набор ограничений: %1$s</string>
+
+    <string name="supervision_signal_installed_by">Источник установки</string>
+    <string name="supervision_signal_installed_by_hint">Приложение установлено через: %1$s</string>
+    <string name="supervision_signal_installed_by_unknown_hint">Источник установки определить не удалось.</string>
+
+    <string name="supervision_signal_app_disabled">Приложение отключено администратором</string>
+    <string name="supervision_signal_app_disabled_hint">Компоненты приложения переведены в отключённое состояние политикой устройства.</string>
+
+    <string name="supervision_signal_quiet_mode">Профиль приостановлен</string>
+    <string name="supervision_signal_quiet_mode_hint">Управляемый профиль сейчас находится в режиме паузы.</string>
+
+    <string name="restriction_disallow_install_apps">DISALLOW_INSTALL_APPS — установка приложений запрещена</string>
+    <string name="restriction_disallow_uninstall_apps">DISALLOW_UNINSTALL_APPS — удаление приложений запрещено</string>
+    <string name="restriction_disallow_apps_control">DISALLOW_APPS_CONTROL — настройки приложений заблокированы</string>
+    <string name="restriction_disallow_fun">DISALLOW_FUN — развлечения и игры ограничены</string>
+    <string name="restriction_disallow_adjust_volume">DISALLOW_ADJUST_VOLUME — громкость зафиксирована</string>
+    <string name="restriction_disallow_content_suggestions">DISALLOW_CONTENT_SUGGESTIONS — рекомендации контента отключены</string>
+    <string name="restriction_disallow_share_into_managed_profile">DISALLOW_SHARE_INTO_MANAGED_PROFILE — обмен данными в профиль запрещён</string>
+
+    <!-- ============================ Состояния разрешения ============================ -->
+    <string name="permission_state_granted">Разрешено</string>
+    <string name="permission_state_not_requested">Ещё не запрашивалось</string>
+    <string name="permission_state_denied">Отклонено пользователем</string>
+    <string name="permission_state_denied_permanently">Отклонено, системный диалог больше не покажется</string>
+    <string name="permission_state_blocked_by_policy">Заблокировано родительским контролем</string>
+    <string name="permission_state_not_supported">Не запрашивается на этой версии Android</string>
+
+    <string name="permission_blocked_explanation">Разрешение отозвано политикой устройства (родительским контролем или администратором). Приложение не будет запрашивать его повторно — это можно изменить только со стороны родителя.</string>
+    <string name="permission_denied_permanently_explanation">Вы выбрали «Больше не спрашивать». Приложение не пытается запросить разрешение автоматически — включить его можно в настройках приложения.</string>
+    <string name="permission_denied_explanation">Вы отклонили запрос. Приложение запомнило выбор и не будет спрашивать снова без вашего нажатия.</string>
+    <string name="permission_channel_disabled_explanation">Разрешение выдано, но уведомления для приложения выключены в настройках или канал заблокирован.</string>
+
+    <string name="action_request_permission">Запросить разрешение</string>
+    <string name="action_ask_again">Спросить ещё раз</string>
+    <string name="action_open_app_settings">Открыть настройки приложения</string>
+    <string name="action_open_notification_settings">Настройки уведомлений</string>
+    <string name="action_parent_guide">Инструкция для родителя</string>
+    <string name="action_close">Закрыть</string>
+    <string name="action_refresh">Обновить</string>
+
+    <string name="delivery_state_idle">Уведомление ещё не отправлялось</string>
+    <string name="delivery_state_sending">Отправка…</string>
+    <string name="delivery_state_sent">Уведомление отправлено</string>
+    <string name="delivery_state_denied">Не отправлено: нет разрешения</string>
+    <string name="delivery_state_failed">Не отправлено: %1$s</string>
+
+    <!-- ============================ Инструкция для родителя ============================ -->
+    <string name="parent_guide_title">Инструкция для родителя</string>
+    <string name="parent_guide_intro">Приложение не может и не пытается снять ограничения самостоятельно. Вот официальные способы разрешить его работу.</string>
+
+    <string name="parent_guide_family_link_title">Google Family Link (устройство родителя)</string>
+    <string name="parent_guide_family_link_step_1">1. Откройте приложение Family Link на устройстве родителя.</string>
+    <string name="parent_guide_family_link_step_2">2. Выберите профиль ребёнка.</string>
+    <string name="parent_guide_family_link_step_3">3. Перейдите в «Управление настройками» → «Приложения».</string>
+    <string name="parent_guide_family_link_step_4">4. Найдите FamilyAware в списке и выберите «Разрешить».</string>
+    <string name="parent_guide_family_link_step_5">5. При необходимости в том же разделе откройте разрешения приложения и включите уведомления.</string>
+    <string name="parent_guide_family_link_step_6">6. Изменения применяются после синхронизации устройства ребёнка (обычно до нескольких минут).</string>
+
+    <string name="parent_guide_device_title">На устройстве ребёнка</string>
+    <string name="parent_guide_device_step_1">1. Откройте «Настройки» → «Приложения» → FamilyAware.</string>
+    <string name="parent_guide_device_step_2">2. Перейдите в «Разрешения» → «Уведомления» → «Разрешить».</string>
+    <string name="parent_guide_device_step_3">3. Если пункт неактивен, значит ограничение задано родителем — менять его нужно в Family Link.</string>
+
+    <string name="parent_guide_mdm_title">Корпоративный профиль / MDM</string>
+    <string name="parent_guide_mdm_body">Если устройством управляет организация, разрешения может отозвать администратор через Device Policy. В этом случае нужно обратиться к администратору профиля: приложение не может вернуть разрешение самостоятельно.</string>
+
+    <string name="parent_guide_help_link">Официальная справка Google Family Link</string>
+    <string name="parent_guide_help_unavailable">Не найдено приложение для открытия ссылки.</string>
+
+    <!-- ============================ Прозрачность ============================ -->
+    <string name="transparency_item_1">Не скрывает себя из списка приложений и не отключает свою иконку.</string>
+    <string name="transparency_item_2">Не использует AccessibilityService, Device Owner, Profile Owner, VPN и overlay-окна.</string>
+    <string name="transparency_item_3">Не пытается отключить или обойти родительский контроль.</string>
+    <string name="transparency_item_4">Не меняет системные настройки без явного действия пользователя.</string>
+    <string name="transparency_item_5">Не запрашивает разрешения повторно автоматически — только по вашему нажатию.</string>
+    <string name="transparency_item_6">Не мешает удалению: удаление выполняется штатно через Настройки или магазин приложений.</string>
+    <string name="transparency_item_7">Не имеет разрешения INTERNET: данные не собираются и никуда не передаются.</string>
+
+    <!-- ============================ Настройки темы ============================ -->
+    <string name="settings_dynamic_color_title">Цвета Material You</string>
+    <string name="settings_dynamic_color_body">Брать палитру темы из обоев устройства (Android 12+).</string>
+    <string name="settings_dynamic_color_unavailable">Недоступно на этой версии Android</string>
+
+    <string name="cd_back">Назад</string>
+    <string name="cd_more">Дополнительно</string>
+
+</resources>

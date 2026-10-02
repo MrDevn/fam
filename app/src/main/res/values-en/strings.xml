@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FamilyAware</string>
+    <string name="app_tagline">Behaving properly next to parental controls</string>
+
+    <!-- ============================ Onboarding ============================ -->
+    <string name="onboarding_page_indicator">Page %1$d of %2$d</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_back">Back</string>
+    <string name="onboarding_finish">Got it, start</string>
+
+    <string name="onboarding_intro_title">What this app is</string>
+    <string name="onboarding_intro_body">FamilyAware is an educational app that demonstrates correct behaviour on a device managed by parental controls, such as Google Family Link.</string>
+    <string name="onboarding_intro_body_2">It only uses official Android APIs: it does not hide itself, does not change other apps\' settings, does not bypass restrictions and does not request privileged mechanisms.</string>
+
+    <string name="onboarding_permissions_title">Permissions: what and why</string>
+    <string name="onboarding_permissions_body">The app needs exactly one runtime permission. Below is why it is needed and what happens if you refuse.</string>
+    <string name="onboarding_permissions_note">Refusing does not break the app: every screen and the whole diagnostic keep working, only sending notifications is disabled.</string>
+
+    <string name="onboarding_supervision_title">If a parent manages the device</string>
+    <string name="onboarding_supervision_body">FamilyAware inspects the device using official APIs and honestly reports when a feature is unavailable because of parental control.</string>
+    <string name="onboarding_supervision_body_2">In that case the app will not ask for the permission again. Instead it shows a clear message and step-by-step instructions on how a parent can officially allow the feature.</string>
+
+    <!-- ============================ Permission ============================ -->
+    <string name="perm_notifications_title">Notifications</string>
+    <string name="perm_notifications_technical_name">android.permission.POST_NOTIFICATIONS</string>
+    <string name="perm_notifications_why">Needed to show the result of a check and to warn you when a feature is blocked by parental control.</string>
+    <string name="perm_notifications_if_denied">If refused: the app keeps working but cannot show notifications. All other screens stay available.</string>
+    <string name="perm_notifications_legacy_note">On Android 12 and below this permission is granted at install time and is not requested at runtime — it is toggled in the app settings screen.</string>
+    <string name="onboarding_legacy_toggle_show">How it works on Android 12 and below</string>
+    <string name="onboarding_legacy_toggle_hide">Hide details</string>
+
+    <!-- ============================ States ============================ -->
+    <string name="state_loading">Checking the device…</string>
+    <string name="state_loading_short">Loading…</string>
+    <string name="state_error_title">The check could not be completed</string>
+    <string name="state_error_hint">Make sure the app is not restricted by parental control, then try again.</string>
+    <string name="state_permission_denied_title">Access denied</string>
+    <string name="state_retry">Retry</string>
+    <string name="state_empty">No data</string>
+
+    <!-- ============================ Home ============================ -->
+    <string name="home_section_status">Device state</string>
+    <string name="home_section_permissions">Permissions</string>
+    <string name="home_section_actions">Feature check</string>
+    <string name="home_section_transparency">What this app does NOT do</string>
+
+    <string name="home_check_result_title">Check completed</string>
+    <string name="home_check_result_body">The app detected the device state, active restrictions and granted permissions.</string>
+    <string name="home_last_checked">Checked: %1$s</string>
+    <string name="home_rerun">Run the check again</string>
+
+    <string name="home_action_notifications_title">Test notification</string>
+    <string name="home_action_notifications_body">Verifies whether the system actually allows this app to post notifications.</string>
+    <string name="home_action_send">Send notification</string>
+
+    <string name="notification_channel_name">App status</string>
+    <string name="notification_channel_description">Messages about check results and about blocks coming from parental control.</string>
+    <string name="notification_test_title">FamilyAware works</string>
+    <string name="notification_test_body">Notifications are allowed. The check passed successfully.</string>
+    <string name="notification_blocked_title">Notifications are off</string>
+    <string name="notification_blocked_body">The system did not allow posting a notification. Parental control may be in effect.</string>
+
+    <!-- ============================ Restriction diagnostics ============================ -->
+    <string name="supervision_clean_title">No restrictions detected</string>
+    <string name="supervision_clean_body">The device is not managed by a restricted profile, the feature is fully available.</string>
+
+    <string name="supervision_detected_title">Device management detected</string>
+    <string name="supervision_detected_body">Some features may be unavailable. The app does not try to bypass anything — below you can see what exactly is restricted and how a parent can change it.</string>
+
+    <string name="supervision_signal_managed_profile">Managed profile (work profile)</string>
+    <string name="supervision_signal_managed_profile_hint">The current user is a managed work profile.</string>
+
+    <string name="supervision_signal_private_profile">Private profile (private space)</string>
+    <string name="supervision_signal_private_profile_hint">The app is running inside an Android private space.</string>
+
+    <string name="supervision_signal_secondary_user">Secondary device user</string>
+    <string name="supervision_signal_secondary_user_hint">The app is not running as the primary system user.</string>
+
+    <string name="supervision_signal_demo_user">Device demo mode</string>
+    <string name="supervision_signal_demo_user_hint">The user is running in demo mode (retail unit).</string>
+
+    <string name="supervision_signal_restrictions_provider">A restrictions provider is active</string>
+    <string name="supervision_signal_restrictions_provider_hint">An app-management service is registered in the system — for example Google Family Link or an MDM solution.</string>
+
+    <string name="supervision_signal_app_restrictions">Restrictions are set for this app</string>
+    <string name="supervision_signal_app_restrictions_hint">The administrator passed the following restrictions to the app: %1$s</string>
+
+    <string name="supervision_signal_installed_by">Installation source</string>
+    <string name="supervision_signal_installed_by_hint">The app was installed by: %1$s</string>
+    <string name="supervision_signal_installed_by_unknown_hint">The installation source could not be determined.</string>
+
+    <string name="supervision_signal_app_disabled">The app is disabled by the administrator</string>
+    <string name="supervision_signal_app_disabled_hint">Application components were disabled by device policy.</string>
+
+    <string name="supervision_signal_quiet_mode">Profile is paused</string>
+    <string name="supervision_signal_quiet_mode_hint">The managed profile is currently in quiet mode.</string>
+
+    <string name="restriction_disallow_install_apps">DISALLOW_INSTALL_APPS — installing apps is forbidden</string>
+    <string name="restriction_disallow_uninstall_apps">DISALLOW_UNINSTALL_APPS — uninstalling apps is forbidden</string>
+    <string name="restriction_disallow_apps_control">DISALLOW_APPS_CONTROL — app settings are locked</string>
+    <string name="restriction_disallow_fun">DISALLOW_FUN — entertainment and games are restricted</string>
+    <string name="restriction_disallow_adjust_volume">DISALLOW_ADJUST_VOLUME — volume is locked</string>
+    <string name="restriction_disallow_content_suggestions">DISALLOW_CONTENT_SUGGESTIONS — content suggestions are off</string>
+    <string name="restriction_disallow_share_into_managed_profile">DISALLOW_SHARE_INTO_MANAGED_PROFILE — sharing into the profile is forbidden</string>
+
+    <!-- ============================ Permission states ============================ -->
+    <string name="permission_state_granted">Allowed</string>
+    <string name="permission_state_not_requested">Not requested yet</string>
+    <string name="permission_state_denied">Denied by the user</string>
+    <string name="permission_state_denied_permanently">Denied, the system dialog will not appear again</string>
+    <string name="permission_state_blocked_by_policy">Blocked by parental control</string>
+    <string name="permission_state_not_supported">Not requested on this Android version</string>
+
+    <string name="permission_blocked_explanation">The permission was revoked by device policy (parental control or an administrator). The app will not request it again — only a parent can change this.</string>
+    <string name="permission_denied_permanently_explanation">You chose \"Don\'t ask again\". The app does not try to request the permission automatically — it can be enabled in the app settings.</string>
+    <string name="permission_denied_explanation">You denied the request. The app remembered the choice and will not ask again without your tap.</string>
+    <string name="permission_channel_disabled_explanation">The permission is granted, but notifications for the app are switched off in settings or the channel is blocked.</string>
+
+    <string name="action_request_permission">Request permission</string>
+    <string name="action_ask_again">Ask again</string>
+    <string name="action_open_app_settings">Open app settings</string>
+    <string name="action_open_notification_settings">Notification settings</string>
+    <string name="action_parent_guide">Instructions for a parent</string>
+    <string name="action_close">Close</string>
+    <string name="action_refresh">Refresh</string>
+
+    <string name="delivery_state_idle">No notification sent yet</string>
+    <string name="delivery_state_sending">Sending…</string>
+    <string name="delivery_state_sent">Notification sent</string>
+    <string name="delivery_state_denied">Not sent: permission missing</string>
+    <string name="delivery_state_failed">Not sent: %1$s</string>
+
+    <!-- ============================ Parent guide ============================ -->
+    <string name="parent_guide_title">Instructions for a parent</string>
+    <string name="parent_guide_intro">The app cannot and will not lift restrictions on its own. Here are the official ways to allow it.</string>
+
+    <string name="parent_guide_family_link_title">Google Family Link (parent\'s device)</string>
+    <string name="parent_guide_family_link_step_1">1. Open the Family Link app on the parent\'s device.</string>
+    <string name="parent_guide_family_link_step_2">2. Select the child\'s profile.</string>
+    <string name="parent_guide_family_link_step_3">3. Go to \"Manage settings\" → \"Apps\".</string>
+    <string name="parent_guide_family_link_step_4">4. Find FamilyAware in the list and choose \"Allow\".</string>
+    <string name="parent_guide_family_link_step_5">5. If needed, open the app permissions in the same section and enable notifications.</string>
+    <string name="parent_guide_family_link_step_6">6. Changes apply after the child\'s device syncs (usually within a few minutes).</string>
+
+    <string name="parent_guide_device_title">On the child\'s device</string>
+    <string name="parent_guide_device_step_1">1. Open Settings → Apps → FamilyAware.</string>
+    <string name="parent_guide_device_step_2">2. Go to Permissions → Notifications → Allow.</string>
+    <string name="parent_guide_device_step_3">3. If the option is greyed out, the restriction comes from the parent — change it in Family Link.</string>
+
+    <string name="parent_guide_mdm_title">Work profile / MDM</string>
+    <string name="parent_guide_mdm_body">If the device is managed by an organisation, permissions can be revoked by the administrator through Device Policy. Contact the profile administrator: the app cannot restore the permission itself.</string>
+
+    <string name="parent_guide_help_link">Official Google Family Link help</string>
+    <string name="parent_guide_help_unavailable">No app found to open the link.</string>
+
+    <!-- ============================ Transparency ============================ -->
+    <string name="transparency_item_1">Does not hide itself from the app list and does not disable its own launcher icon.</string>
+    <string name="transparency_item_2">Does not use AccessibilityService, Device Owner, Profile Owner, VPN or overlay windows.</string>
+    <string name="transparency_item_3">Does not try to disable or bypass parental control.</string>
+    <string name="transparency_item_4">Does not change system settings without an explicit user action.</string>
+    <string name="transparency_item_5">Does not re-request permissions automatically — only on your tap.</string>
+    <string name="transparency_item_6">Does not interfere with uninstalling: removal works normally via Settings or the app store.</string>
+    <string name="transparency_item_7">Has no INTERNET permission: nothing is collected or transmitted.</string>
+
+    <!-- ============================ Theme settings ============================ -->
+    <string name="settings_dynamic_color_title">Material You colors</string>
+    <string name="settings_dynamic_color_body">Take the theme palette from the device wallpaper (Android 12+).</string>
+    <string name="settings_dynamic_color_unavailable">Not available on this Android version</string>
+
+    <string name="cd_back">Back</string>
+    <string name="cd_more">More</string>
+
+</resources>
