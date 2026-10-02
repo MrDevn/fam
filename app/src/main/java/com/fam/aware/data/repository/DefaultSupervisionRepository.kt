@@ -52,7 +52,7 @@ class DefaultSupervisionRepository(
 
     private fun isPrivateProfile(): Boolean =
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-            runCatching { userManager?.isProfile == true && userManager?.isManagedProfile != true }
+            runCatching { userManager?.let { it.isProfile && !it.isManagedProfile } == true }
                 .getOrDefault(false)
 
     private fun isSecondaryUser(): Boolean =
@@ -95,10 +95,12 @@ class DefaultSupervisionRepository(
     private fun installingPackageApi30(): String? =
         packageManager.getInstallSourceInfo(context.packageName).installingPackageName
 
-    private fun Bundle.toStringMap(): Map<String, String> = buildMap {
-        keySet().forEach { key ->
-            val value = runCatching { get(key)?.toString() }.getOrNull()
-            if (value != null) put(key, value)
+    private fun Bundle.toStringMap(): Map<String, String> {
+        val result = LinkedHashMap<String, String>()
+        for (key in keySet()) {
+            val value: Any? = runCatching { get(key) }.getOrNull()
+            if (value != null) result[key] = value.toString()
         }
+        return result
     }
 }
