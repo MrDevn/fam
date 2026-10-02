@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.RestrictionEntry
 import android.os.Bundle
-import androidx.core.os.BundleCompat
 import com.fam.aware.R
 import com.fam.aware.data.repository.RESTRICTION_KEY_PERSISTENT_ACCESS
 
@@ -30,18 +29,16 @@ class AppRestrictionsReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action != Intent.ACTION_GET_RESTRICTION_ENTRIES) return
 
+        // Значение по умолчанию — false: режим выключен, пока администратор
+        // явно его не разрешит.
         val entry = RestrictionEntry(RESTRICTION_KEY_PERSISTENT_ACCESS, false).apply {
             title = context.getString(R.string.restriction_pa_entry_title)
             description = context.getString(R.string.restriction_pa_entry_description)
         }
 
         val extras = Bundle().apply {
-            BundleCompat.putParcelableArrayList(
-                this,
-                Intent.EXTRA_RESTRICTIONS_LIST,
-                arrayListOf(entry),
-            )
+            putParcelableArrayList(Intent.EXTRA_RESTRICTIONS_LIST, arrayListOf(entry))
         }
-        resultExtras = extras
+        setResultExtras(extras)
     }
 }
