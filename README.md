@@ -112,6 +112,9 @@ app/src/main/java/com/fam/aware/
 ## Android 16 (API 36)
 
 - `compileSdk = 36`, `targetSdk = 36`, `minSdk = 26`.
+- Версии AndroidX подобраны под `compileSdk 36`: Compose BOM `2026.06.01` (UI 1.11.4, Material 3 1.4.0),
+  `core-ktx 1.18.0`, `lifecycle 2.10.0`, `activity-compose 1.13.0`. Более свежие релизы
+  этих библиотек требуют `minCompileSdk = 37`, то есть уже Android 17.
 - **Edge-to-edge** включён явно (`enableEdgeToEdge`), все экраны обрабатывают insets
   (`statusBarsPadding`, `navigationBarsPadding`, `imePadding`, `Scaffold`).
 - **Predictive back** включён через `android:enableOnBackInvokedCallback="true"`;
