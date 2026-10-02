@@ -12,35 +12,48 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModelProvider
 import com.fam.aware.FamApp
 import com.fam.aware.ui.home.HomeScreen
 import com.fam.aware.ui.onboarding.OnboardingScreen
+import com.fam.aware.ui.persistent.PersistentAccessScreen
 import com.fam.aware.ui.theme.Motion
 import com.fam.aware.viewmodel.AppearanceViewModel
+
+/** Экраны приложения. Навигационная библиотека не подключается — их три. */
+internal enum class RootDestination { ONBOARDING, HOME, PERSISTENT_ACCESS }
 
 /**
  * Корень навигации.
  *
- * Навигационная библиотека не подключается: в приложении два экрана,
- * и простой [AnimatedContent] полностью закрывает задачу, не добавляя зависимостей.
+ * Простой [AnimatedContent] полностью закрывает задачу переключения трёх экранов
+ * и не добавляет зависимостей. Предиктивный «Назад» обрабатывается системно,
+ * а на экране режима постоянного доступа есть явный [androidx.activity.compose.BackHandler].
  */
 @Composable
 fun AppRoot(
     appearanceViewModel: AppearanceViewModel,
     viewModelFactory: ViewModelProvider.Factory,
 ) {
-    val application = androidx.compose.ui.platform.LocalContext.current.applicationContext as FamApp
+    val application = LocalContext.current.applicationContext as FamApp
     val settingsRepository = remember(application) { application.container.settingsRepository }
 
-    var showOnboarding by remember(settingsRepository) {
-        mutableStateOf(!settingsRepository.onboardingCompleted)
+    var destination by remember(settingsRepository) {
+        mutableStateOf(
+            if (settingsRepository.onboardingCompleted) {
+                RootDestination.HOME
+            } else {
+                RootDestination.ONBOARDING
+            },
+        )
     }
 
     AnimatedContent(
-        targetState = showOnboarding,
+        targetState = destination,
         transitionSpec = {
-            val direction = if (targetState) -1 else 1
+            // Вперёд — сдвиг влево, назад — сдвиг вправо.
+            val direction = if (targetState.ordinal > initialState.ordinal) 1 else -1
             (
                 fadeIn(tween(Motion.DurationLong)) +
                     slideInHorizontally(tween(Motion.DurationLong)) { width -> width / 6 * direction }
@@ -50,17 +63,23 @@ fun AppRoot(
                     )
         },
         label = "root-navigation",
-    ) { onboarding ->
-        if (onboarding) {
-            OnboardingScreen(
+    ) { target ->
+        when (target) {
+            RootDestination.ONBOARDING -> OnboardingScreen(
                 viewModelFactory = viewModelFactory,
-                onFinished = { showOnboarding = false },
+                onFinished = { destination = RootDestination.HOME },
             )
-        } else {
-            HomeScreen(
+
+            RootDestination.HOME -> HomeScreen(
                 viewModelFactory = viewModelFactory,
                 appearanceViewModel = appearanceViewModel,
-                onOpenSetup = { showOnboarding = true },
+                onOpenSetup = { destination = RootDestination.ONBOARDING },
+                onOpenPersistentAccess = { destination = RootDestination.PERSISTENT_ACCESS },
+            )
+
+            RootDestination.PERSISTENT_ACCESS -> PersistentAccessScreen(
+                viewModelFactory = viewModelFactory,
+                onBack = { destination = RootDestination.HOME },
             )
         }
     }

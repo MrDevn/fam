@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Объявление ограничений приложения (Android app restrictions).
+
+  Это официальный механизм, через который родитель или администратор устройства
+  управляет приложением. Значение задаёт только администратор — само приложение
+  изменить его не может.
+
+  persistentAccessAllowed = true  -> режим постоянного доступа разрешён родителем
+                                     и действует, пока разрешение не отзовут.
+  persistentAccessAllowed = false -> режим запрещён; приложение выключает его
+                                     и не предлагает включить локально.
+  ключ не задан                    -> решение администратора отсутствует,
+                                     приложение использует локальное подтверждение
+                                     с обязательным сроком действия.
+-->
+<restrictions xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <restriction
+        android:defaultValue="false"
+        android:description="@string/restriction_pa_entry_description"
+        android:key="persistentAccessAllowed"
+        android:restrictionType="bool"
+        android:title="@string/restriction_pa_entry_title" />
+
+</restrictions>

@@ -26,8 +26,9 @@ import com.fam.aware.viewmodel.AppearanceViewModel
  * контент под системными панелями, корректно обрабатывая insets.
  *
  * Предиктивная анимация возврата (predictive back) включена в манифесте
- * через `android:enableOnBackInvokedCallback` и работает автоматически,
- * так как в приложении нет перехватов кнопки «Назад».
+ * через `android:enableOnBackInvokedCallback="true"`. Единственный перехват —
+ * `BackHandler` на экране режима постоянного доступа, он корректно работает
+ * вместе с предиктивной анимацией и возвращает пользователя на главный экран.
  */
 class MainActivity : ComponentActivity() {
 

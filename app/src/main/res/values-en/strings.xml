@@ -172,4 +172,98 @@
     <string name="cd_back">Back</string>
     <string name="cd_more">More</string>
 
+
+    <!-- ============ Persistent access mode ============ -->
+    <string name="pa_screen_title">Persistent access mode</string>
+    <string name="pa_screen_subtitle">For a device the parent officially allowed to use without screen time limits</string>
+
+    <string name="pa_section_status">Mode state</string>
+    <string name="pa_section_control">Controls</string>
+
+    <string name="pa_state_disabled">Mode is off</string>
+    <string name="pa_state_disabled_body">There is no approval. The mode can only be enabled after a parent or the device administrator decides.</string>
+
+    <string name="pa_state_pending">Waiting for the parent\'s approval</string>
+    <string name="pa_state_pending_body">The request was sent through the system approval dialog. Until it is answered the mode stays off and the app does nothing behind parental control\'s back.</string>
+
+    <string name="pa_state_active">Mode is active</string>
+    <string name="pa_state_active_body">The app stops showing its own break reminders and keeps a persistent marker in the notifications. System screen time limits are not changed — only a parent can change them.</string>
+
+    <string name="pa_state_expired">The approval has expired</string>
+    <string name="pa_state_expired_body">The mode was turned off automatically. A new parent approval is required to enable it again.</string>
+
+    <string name="pa_state_revoked_by_admin">Forbidden by a parent or administrator</string>
+    <string name="pa_state_revoked_by_admin_body">The app restriction persistentAccessAllowed is set to false. The app cannot and does not try to override this locally — it can only be changed where it was issued.</string>
+
+    <string name="pa_state_unavailable_notifications">Mode unavailable: notifications are off</string>
+    <string name="pa_state_unavailable_notifications_body">An active mode must be visible to the user and to the parent, so it cannot be enabled without the notification permission. Allow notifications to continue.</string>
+
+    <string name="pa_source_none">none</string>
+    <string name="pa_source_admin">device administrator</string>
+    <string name="pa_source_official">parent, via the system dialog</string>
+    <string name="pa_source_local">on-device confirmation</string>
+
+    <string name="pa_active_until">Valid until: %1$s</string>
+    <string name="pa_active_by_admin">Allowed by the device administrator. Valid until it is revoked.</string>
+    <string name="pa_active_source">Approval source: %1$s</string>
+    <string name="pa_restriction_not_set">The administrator has not set the persistentAccessAllowed restriction</string>
+    <string name="pa_restriction_set_true">Administrator restriction: persistentAccessAllowed = true</string>
+    <string name="pa_restriction_set_false">Administrator restriction: persistentAccessAllowed = false</string>
+
+    <string name="pa_duration_label">Approval validity period</string>
+    <string name="duration_1_hour">1 hour</string>
+    <string name="duration_6_hours">6 hours</string>
+    <string name="duration_12_hours">12 hours</string>
+    <string name="duration_24_hours">24 hours</string>
+
+    <string name="pa_action_request_parent">Request the parent\'s approval</string>
+    <string name="pa_action_cancel_request">Cancel the request</string>
+    <string name="pa_action_confirm_locally">Confirm on this device</string>
+    <string name="pa_action_revoke">Turn the mode off</string>
+    <string name="pa_action_refresh">Re-read the administrator decision</string>
+
+    <string name="pa_notice_parent_declined">The parent declined the request. The mode was not enabled.</string>
+    <string name="pa_notice_no_response">No response received. The mode was not enabled.</string>
+    <string name="pa_notice_revoked">Persistent access mode is turned off.</string>
+    <string name="pa_notice_approval_unavailable">There is no parental control service in the system, so the official request is unavailable. See the instructions for a parent below.</string>
+
+    <string name="pa_local_dialog_title">On-device confirmation</string>
+    <string name="pa_local_dialog_body">This option is only used when the device has no parental control service (Family Link, MDM).\n\nThe confirmation:\n• gives the app no system privileges;\n• does not change system screen time limits;\n• is limited in time and expires automatically;\n• can be cancelled at any moment, including by a parent or administrator.</string>
+    <string name="pa_local_dialog_confirm">I confirm</string>
+    <string name="pa_local_dialog_cancel">Cancel</string>
+
+    <string name="pa_how_parent_title">How a parent enables the mode</string>
+    <string name="pa_how_parent_admin_title">Through app restrictions</string>
+    <string name="pa_how_parent_admin_body">The app declares the boolean restriction persistentAccessAllowed. A device administrator, an MDM console or a parental control service sets it to true — and the mode turns on without any action from the app. Setting it to false forbids the mode, and the app obeys.</string>
+    <string name="pa_how_parent_approval_title">Through the system approval dialog</string>
+    <string name="pa_how_parent_approval_body">The \"Request the parent\'s approval\" button uses the official RestrictionsManager.createLocalApprovalIntent(): the request goes to the parental control service and the answer comes back to the app. Without a positive answer the mode is not enabled.</string>
+    <string name="pa_how_parent_family_link_title">In Google Family Link</string>
+    <string name="pa_how_parent_family_link_step_1">1. Open Family Link on the parent\'s device and select the child\'s profile.</string>
+    <string name="pa_how_parent_family_link_step_2">2. Go to \"Manage settings\" → \"Restrictions\" or \"Screen time\".</string>
+    <string name="pa_how_parent_family_link_step_3">3. Allow the app to run without a screen time limit — only a parent can do this.</string>
+    <string name="pa_how_parent_family_link_step_4">4. If the app asks for approval — approve the request in the Family Link dialog.</string>
+
+    <string name="pa_limits_title">What this mode does NOT do</string>
+    <string name="pa_limits_1">Does not change system screen time limits and cannot change them — only a parent can, in Family Link.</string>
+    <string name="pa_limits_2">Does not make the app a Device Owner or Profile Owner and does not use DevicePolicyManager.</string>
+    <string name="pa_limits_3">Does not start a foreground service, wakelock or keep-alive to outlive restrictions.</string>
+    <string name="pa_limits_4">Does not block uninstalling the app and does not disable its own components.</string>
+    <string name="pa_limits_5">Does not hide the active mode: a persistent notification marker is always shown.</string>
+    <string name="pa_limits_6">Does not override the administrator: persistentAccessAllowed = false always wins.</string>
+
+    <string name="pa_honesty_note">The mode only concerns this app. If a parent set a screen time limit, the system restricts the whole device regardless of this mode.</string>
+
+    <string name="restriction_pa_entry_title">Allow persistent access mode</string>
+    <string name="restriction_pa_entry_description">When enabled, the app runs in persistent access mode until the administrator revokes it. When disabled, the mode is unavailable and cannot be enabled on the device itself.</string>
+
+    <string name="notification_pa_channel_name">Persistent access mode</string>
+    <string name="notification_pa_channel_description">Persistent marker showing that persistent access mode is active.</string>
+    <string name="notification_pa_title">Persistent access mode is active</string>
+    <string name="notification_pa_body_until">Valid until %1$s. Approval: %2$s.</string>
+    <string name="notification_pa_body_admin">Allowed by the device administrator. Revoked where it was issued.</string>
+
+    <string name="home_pa_card_title">Persistent access mode</string>
+    <string name="home_pa_card_body">A separate mode for a device the parent officially allowed to use without screen time limits. Enabled only with a parent or administrator approval.</string>
+    <string name="home_pa_open">Open</string>
+
 </resources>

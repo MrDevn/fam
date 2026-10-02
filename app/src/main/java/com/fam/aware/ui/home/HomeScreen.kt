@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Star
@@ -83,6 +84,7 @@ fun HomeScreen(
     viewModelFactory: ViewModelProvider.Factory,
     appearanceViewModel: AppearanceViewModel,
     onOpenSetup: () -> Unit,
+    onOpenPersistentAccess: () -> Unit,
 ) {
     val homeViewModel: HomeViewModel = viewModel(factory = viewModelFactory)
     val state by homeViewModel.uiState.collectAsStateWithLifecycle()
@@ -184,6 +186,7 @@ fun HomeScreen(
                 onRunCheck = homeViewModel::runCheck,
                 onSendTestNotification = homeViewModel::sendTestNotification,
                 onDynamicColorChange = appearanceViewModel::setDynamicColorEnabled,
+                onOpenPersistentAccess = onOpenPersistentAccess,
             )
         }
     }
@@ -214,6 +217,7 @@ private fun HomeContent(
     onRunCheck: () -> Unit,
     onSendTestNotification: () -> Unit,
     onDynamicColorChange: (Boolean) -> Unit,
+    onOpenPersistentAccess: () -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 360.dp),
@@ -275,6 +279,10 @@ private fun HomeContent(
                     onSend = onSendTestNotification,
                 )
             }
+        }
+
+        item(span = { GridItemSpan(maxLineSpan) }) {
+            PersistentAccessEntryCard(onOpen = onOpenPersistentAccess)
         }
 
         item(span = { GridItemSpan(maxLineSpan) }) {
@@ -378,6 +386,26 @@ private fun DeliveryHint(text: String) {
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
     )
+}
+
+/**
+ * Точка входа в «режим постоянного доступа».
+ *
+ * Режим включается только с подтверждения родителя или администратора устройства,
+ * поэтому на главном экране показан только вход и описание.
+ */
+@Composable
+private fun PersistentAccessEntryCard(onOpen: () -> Unit) {
+    SectionCard(
+        title = stringResource(R.string.home_pa_card_title),
+        subtitle = stringResource(R.string.home_pa_card_body),
+        icon = Icons.Filled.Lock,
+        accent = MaterialTheme.colorScheme.tertiary,
+    ) {
+        Button(onClick = onOpen, modifier = Modifier.fillMaxWidth()) {
+            Text(stringResource(R.string.home_pa_open))
+        }
+    }
 }
 
 /** Карточка единственной пользовательской настройки оформления. */

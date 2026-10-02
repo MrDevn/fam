@@ -64,6 +64,46 @@
 
 ---
 
+## Режим постоянного доступа
+
+Отдельный режим для устройства, которое родитель **официально** разрешил использовать
+без ограничения экранного времени. Режим относится только к самому приложению:
+оно перестаёт показывать собственные напоминания и держит постоянную отметку в уведомлениях.
+
+### Как включается
+
+| Способ | Механизм | Кто решает |
+|---|---|---|
+| Ограничение приложения | `persistentAccessAllowed` через `RestrictionsManager` / `ApplicationRestrictionsController` / MDM. Объявлено в `res/xml/app_restrictions.xml`, отдаётся системе через `AppRestrictionsReceiver` | родитель или администратор |
+| Системный диалог согласования | `RestrictionsManager.createLocalApprovalIntent()` → запрос уходит в сервис родительского контроля, ответ возвращается в приложение | родитель |
+| Подтверждение на устройстве | явный диалог в приложении, **всегда со сроком действия** (1/6/12/24 ч) | пользователь, только если сервиса родительского контроля нет |
+
+Приоритет всегда у администратора: если `persistentAccessAllowed = false`, режим выключен
+и локально не включается — кнопки активации не показываются вообще.
+
+Изменение ограничений отслеживается через официальный broadcast
+`Intent.ACTION_APPLICATION_RESTRICTIONS_CHANGED`, поэтому отзыв срабатывает сразу.
+
+### Состояния
+
+`DISABLED` → `PENDING_APPROVAL` → `ACTIVE` → `EXPIRED` / `REVOKED_BY_ADMIN` /
+`UNAVAILABLE_NO_NOTIFICATIONS`.
+
+Режим не активируется без разрешения на уведомления: активный режим обязан быть виден
+пользователю и родителю, поэтому в уведомлениях всегда висит неснимаемая отметка,
+которая исчезает сразу после отзыва.
+
+### Чего режим НЕ делает
+
+- не изменяет системные лимиты экранного времени и не может их изменить — это делает только родитель в Family Link;
+- не назначает приложение Device Owner / Profile Owner и не использует `DevicePolicyManager`;
+- не запускает foreground-сервис, wakelock или keep-alive, чтобы «пережить» ограничения;
+- не блокирует удаление приложения и не отключает свои компоненты;
+- не скрывает активный режим;
+- не переопределяет запрет администратора.
+
+---
+
 ## Состояния разрешений
 
 | Состояние | Поведение UI |
@@ -88,17 +128,19 @@ app/src/main/java/com/fam/aware/
 ├── di/                          # AppContainer, FamViewModelFactory
 ├── data/
 │   ├── local/                   # SettingsRepository (SharedPreferences)
-│   ├── model/                   # доменные модели + SupervisionAnalyzer (чистая логика)
+│   ├── model/                   # доменные модели + чистая логика (SupervisionAnalyzer, PersistentAccessPolicy)
 │   ├── notification/            # NotificationPublisher
-│   └── repository/              # SupervisionRepository, PermissionRepository
-├── viewmodel/                   # OnboardingViewModel, HomeViewModel, AppearanceViewModel
+│   └── repository/              # SupervisionRepository, PermissionRepository, PersistentAccessRepository
+├── receiver/                    # AppRestrictionsReceiver (официальный провайдер ограничений)
+├── viewmodel/                   # Onboarding, Home, Appearance, PersistentAccess
 ├── ui/
 │   ├── theme/                   # Color, Type, Theme, Motion/Dimens
 │   ├── components/              # переиспользуемые компоненты и панели состояний
 │   ├── onboarding/              # мастер первичной настройки
 │   ├── home/                    # главный экран
+│   ├── persistent/              # экран режима постоянного доступа
 │   └── AppRoot.kt               # переключение экранов
-└── util/                        # системные Intent'ы, форматирование, расширения
+└── util/                        # системные Intent'ы, разбор ответа родителя, форматирование
 ```
 
 - UI не знает про системные API — только про ViewModel.

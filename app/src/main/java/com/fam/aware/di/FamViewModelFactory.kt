@@ -6,6 +6,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import com.fam.aware.viewmodel.AppearanceViewModel
 import com.fam.aware.viewmodel.HomeViewModel
 import com.fam.aware.viewmodel.OnboardingViewModel
+import com.fam.aware.viewmodel.PersistentAccessViewModel
 
 /**
  * Единая фабрика ViewModel.
@@ -34,6 +35,10 @@ class FamViewModelFactory(
 
         modelClass.isAssignableFrom(AppearanceViewModel::class.java) -> AppearanceViewModel(
             settingsRepository = container.settingsRepository,
+        )
+
+        modelClass.isAssignableFrom(PersistentAccessViewModel::class.java) -> PersistentAccessViewModel(
+            persistentAccessRepository = container.persistentAccessRepository,
         )
 
         else -> error("Unsupported ViewModel: ${modelClass.name}")

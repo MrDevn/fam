@@ -30,6 +30,16 @@
         android:theme="@style/Theme.FamilyAware">
 
         <!--
+          Объявление ограничений приложения (официальный механизм Android app
+          restrictions). Через него родитель или администратор устройства
+          разрешает либо запрещает «режим постоянного доступа».
+          Само приложение выставить себе это значение не может.
+        -->
+        <meta-data
+            android:name="android.content.APP_RESTRICTIONS"
+            android:resource="@xml/app_restrictions" />
+
+        <!--
           Activity остаётся видимой в лаунчере (category.LAUNCHER) и никогда
           программно не отключается: приложение не скрывает себя от пользователя
           и от средств родительского контроля.
@@ -47,6 +57,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--
+          Провайдер ограничений приложения. Отвечает только на системный
+          запрос android.intent.action.GET_RESTRICTION_ENTRIES и защищён
+          системным разрешением GET_RESTRICTION_ENTRIES, поэтому вызвать его
+          может исключительно система.
+
+          Receiver ничего не меняет в устройстве, не повышает привилегии
+          приложения и не является Device Admin.
+        -->
+        <receiver
+            android:name=".receiver.AppRestrictionsReceiver"
+            android:exported="true"
+            android:permission="android.permission.GET_RESTRICTION_ENTRIES">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_RESTRICTION_ENTRIES" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

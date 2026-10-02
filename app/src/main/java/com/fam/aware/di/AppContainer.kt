@@ -5,8 +5,10 @@ import com.fam.aware.data.local.DefaultSettingsRepository
 import com.fam.aware.data.local.SettingsRepository
 import com.fam.aware.data.notification.DefaultNotificationPublisher
 import com.fam.aware.data.notification.NotificationPublisher
+import com.fam.aware.data.repository.DefaultPersistentAccessRepository
 import com.fam.aware.data.repository.DefaultPermissionRepository
 import com.fam.aware.data.repository.DefaultSupervisionRepository
+import com.fam.aware.data.repository.PersistentAccessRepository
 import com.fam.aware.data.repository.PermissionRepository
 import com.fam.aware.data.repository.SupervisionRepository
 
@@ -29,4 +31,8 @@ class AppContainer(context: Context) {
     }
 
     val notificationPublisher: NotificationPublisher by lazy { DefaultNotificationPublisher(appContext) }
+
+    val persistentAccessRepository: PersistentAccessRepository by lazy {
+        DefaultPersistentAccessRepository(appContext, supervisionRepository, notificationPublisher)
+    }
 }

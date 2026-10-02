@@ -172,4 +172,98 @@
     <string name="cd_back">Назад</string>
     <string name="cd_more">Дополнительно</string>
 
+
+    <!-- ============ Режим постоянного доступа ============ -->
+    <string name="pa_screen_title">Режим постоянного доступа</string>
+    <string name="pa_screen_subtitle">Для устройства, которое родитель официально разрешил использовать без ограничения экранного времени</string>
+
+    <string name="pa_section_status">Состояние режима</string>
+    <string name="pa_section_control">Управление</string>
+
+    <string name="pa_state_disabled">Режим выключен</string>
+    <string name="pa_state_disabled_body">Подтверждения нет. Режим можно включить только после решения родителя или администратора устройства.</string>
+
+    <string name="pa_state_pending">Ожидается подтверждение родителя</string>
+    <string name="pa_state_pending_body">Запрос отправлен через системный диалог согласования. Пока ответа нет, режим не активен и приложение ничего не делает в обход parental control.</string>
+
+    <string name="pa_state_active">Режим активен</string>
+    <string name="pa_state_active_body">Приложение не показывает собственные напоминания о перерывах и держит постоянную отметку в уведомлениях. Системные лимиты экранного времени при этом не изменяются — их задаёт только родитель.</string>
+
+    <string name="pa_state_expired">Срок подтверждения истёк</string>
+    <string name="pa_state_expired_body">Режим выключен автоматически. Чтобы включить его снова, нужно новое подтверждение родителя.</string>
+
+    <string name="pa_state_revoked_by_admin">Запрещено родителем или администратором</string>
+    <string name="pa_state_revoked_by_admin_body">Ограничение приложения persistentAccessAllowed установлено в false. Приложение не может и не пытается переопределить это решение локально — изменить его можно только там, где оно было выдано.</string>
+
+    <string name="pa_state_unavailable_notifications">Режим недоступен: уведомления выключены</string>
+    <string name="pa_state_unavailable_notifications_body">Активный режим обязан быть виден пользователю и родителю, поэтому без разрешения на уведомления он не включается. Разрешите уведомления, чтобы продолжить.</string>
+
+    <string name="pa_source_none">нет</string>
+    <string name="pa_source_admin">администратор устройства</string>
+    <string name="pa_source_official">родитель, через системный диалог</string>
+    <string name="pa_source_local">подтверждение на устройстве</string>
+
+    <string name="pa_active_until">Действует до: %1$s</string>
+    <string name="pa_active_by_admin">Разрешено администратором устройства. Действует, пока разрешение не отзовут.</string>
+    <string name="pa_active_source">Источник подтверждения: %1$s</string>
+    <string name="pa_restriction_not_set">Администратор не задавал ограничение persistentAccessAllowed</string>
+    <string name="pa_restriction_set_true">Ограничение администратора: persistentAccessAllowed = true</string>
+    <string name="pa_restriction_set_false">Ограничение администратора: persistentAccessAllowed = false</string>
+
+    <string name="pa_duration_label">Срок действия подтверждения</string>
+    <string name="duration_1_hour">1 час</string>
+    <string name="duration_6_hours">6 часов</string>
+    <string name="duration_12_hours">12 часов</string>
+    <string name="duration_24_hours">24 часа</string>
+
+    <string name="pa_action_request_parent">Запросить подтверждение родителя</string>
+    <string name="pa_action_cancel_request">Отменить запрос</string>
+    <string name="pa_action_confirm_locally">Подтвердить на устройстве</string>
+    <string name="pa_action_revoke">Отключить режим</string>
+    <string name="pa_action_refresh">Перечитать решение администратора</string>
+
+    <string name="pa_notice_parent_declined">Родитель отклонил запрос. Режим не включён.</string>
+    <string name="pa_notice_no_response">Ответ не получен. Режим не включён.</string>
+    <string name="pa_notice_revoked">Режим постоянного доступа отключён.</string>
+    <string name="pa_notice_approval_unavailable">В системе нет сервиса родительского контроля, поэтому официальный запрос недоступен. Ниже — инструкция для родителя.</string>
+
+    <string name="pa_local_dialog_title">Подтверждение на устройстве</string>
+    <string name="pa_local_dialog_body">Этот вариант используется только тогда, когда на устройстве нет сервиса родительского контроля (Family Link, MDM).\n\nПодтверждение:\n• не даёт приложению никаких системных привилегий;\n• не изменяет системные лимиты экранного времени;\n• действует ограниченное время и истекает автоматически;\n• может быть отменено в любой момент, в том числе родителем или администратором.</string>
+    <string name="pa_local_dialog_confirm">Подтверждаю</string>
+    <string name="pa_local_dialog_cancel">Отмена</string>
+
+    <string name="pa_how_parent_title">Как родителю включить режим</string>
+    <string name="pa_how_parent_admin_title">Через управление приложением (app restrictions)</string>
+    <string name="pa_how_parent_admin_body">Приложение объявляет ограничение persistentAccessAllowed (логическое). Администратор устройства, MDM-консоль или сервис родительского контроля выставляет его в true — и режим включается без действий со стороны приложения. Значение false запрещает режим, и приложение подчиняется.</string>
+    <string name="pa_how_parent_approval_title">Через системный диалог согласования</string>
+    <string name="pa_how_parent_approval_body">Кнопка «Запросить подтверждение родителя» использует официальный RestrictionsManager.createLocalApprovalIntent(): запрос уходит в сервис родительского контроля, ответ возвращается в приложение. Без положительного ответа режим не включается.</string>
+    <string name="pa_how_parent_family_link_title">В Google Family Link</string>
+    <string name="pa_how_parent_family_link_step_1">1. Откройте Family Link на устройстве родителя и выберите профиль ребёнка.</string>
+    <string name="pa_how_parent_family_link_step_2">2. Перейдите в «Управление настройками» → «Ограничения» или «Время использования».</string>
+    <string name="pa_how_parent_family_link_step_3">3. Разрешите приложению работу без ограничения экранного времени — это делает только родитель.</string>
+    <string name="pa_how_parent_family_link_step_4">4. Если приложение запрашивает подтверждение — одобрите запрос в диалоге Family Link.</string>
+
+    <string name="pa_limits_title">Что этот режим НЕ делает</string>
+    <string name="pa_limits_1">Не изменяет системные лимиты экранного времени и не может их изменить — это делает только родитель в Family Link.</string>
+    <string name="pa_limits_2">Не назначает приложение Device Owner или Profile Owner и не использует DevicePolicyManager.</string>
+    <string name="pa_limits_3">Не запускает foreground-сервис, wakelock или keep-alive, чтобы «пережить» ограничения.</string>
+    <string name="pa_limits_4">Не блокирует удаление приложения и не отключает свои компоненты.</string>
+    <string name="pa_limits_5">Не скрывает активный режим: в уведомлениях всегда висит постоянная отметка.</string>
+    <string name="pa_limits_6">Не переопределяет запрет администратора: persistentAccessAllowed = false всегда выигрывает.</string>
+
+    <string name="pa_honesty_note">Режим относится только к самому приложению. Если родитель установил лимит экранного времени, система ограничит всё устройство независимо от этого режима.</string>
+
+    <string name="restriction_pa_entry_title">Разрешить режим постоянного доступа</string>
+    <string name="restriction_pa_entry_description">Если включено, приложение работает в режиме постоянного доступа, пока администратор не отзовёт разрешение. Если выключено, режим недоступен и не может быть включён на самом устройстве.</string>
+
+    <string name="notification_pa_channel_name">Режим постоянного доступа</string>
+    <string name="notification_pa_channel_description">Постоянная отметка о том, что режим постоянного доступа активен.</string>
+    <string name="notification_pa_title">Режим постоянного доступа активен</string>
+    <string name="notification_pa_body_until">Действует до %1$s. Подтверждение: %2$s.</string>
+    <string name="notification_pa_body_admin">Разрешён администратором устройства. Отзывается там же, где был выдан.</string>
+
+    <string name="home_pa_card_title">Режим постоянного доступа</string>
+    <string name="home_pa_card_body">Отдельный режим для устройства, которое родитель официально разрешил использовать без ограничения экранного времени. Включается только с подтверждения родителя или администратора.</string>
+    <string name="home_pa_open">Открыть</string>
+
 </resources>
