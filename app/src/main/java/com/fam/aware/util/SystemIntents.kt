@@ -1,5 +1,6 @@
 package com.fam.aware.util
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -47,22 +48,31 @@ object SystemIntents {
         Intent(Intent.ACTION_VIEW, Uri.parse(PARENT_HELP_URL)),
     )
 
-    private fun launch(context: Context, intent: Intent): Boolean = runCatching {
-        val safeIntent = if (context is android.app.Activity) {
+    /**
+     * Запускает Intent, возвращая `false`, если обработчика нет.
+     *
+     * Первый запасной вариант — тот же Intent без привязки к компоненту/пакету,
+     * второй — полный отказ. Исключения не пробрасываются: отсутствие системного
+     * экрана не должно ломать приложение.
+     */
+    private fun launch(context: Context, intent: Intent): Boolean {
+        val prepared = if (context is Activity) {
             intent
         } else {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
-        context.startActivity(safeIntent)
-    }.recoverCatching {
-        if (it is ActivityNotFoundException) {
-            runCatching {
+        return try {
+            context.startActivity(prepared)
+            true
+        } catch (_: ActivityNotFoundException) {
+            try {
                 context.startActivity(
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).setComponent(null).setPackage(null),
+                    Intent(prepared.action, prepared.data).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
                 )
-            }.isSuccess
-        } else {
-            false
+                true
+            } catch (_: ActivityNotFoundException) {
+                false
+            }
         }
-    }.getOrDefault(false)
+    }
 }

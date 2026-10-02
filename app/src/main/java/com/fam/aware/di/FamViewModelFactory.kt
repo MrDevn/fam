@@ -1,8 +1,8 @@
 package com.fam.aware.di
 
-import androidx.lifecycle.CreationExtras
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.fam.aware.viewmodel.AppearanceViewModel
 import com.fam.aware.viewmodel.HomeViewModel
 import com.fam.aware.viewmodel.OnboardingViewModel
