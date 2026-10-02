@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    // AGP 9 компилирует Kotlin сам (built-in Kotlin), отдельный плагин
+    // org.jetbrains.kotlin.android не нужен. Compose-компилятор подключается отдельно.
     alias(libs.plugins.kotlin.compose)
 }
 
@@ -83,11 +84,8 @@ android {
     }
 }
 
-kotlin {
-    compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-    }
-}
+// Kotlin jvmTarget при встроенной поддержке Kotlin в AGP 9 берётся из
+// compileOptions.targetCompatibility выше — отдельный блок kotlin { } не нужен.
 
 dependencies {
     implementation(libs.androidx.core.ktx)
